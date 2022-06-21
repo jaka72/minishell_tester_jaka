@@ -15,7 +15,6 @@ echo '              $USER          '
 echo               text "$USER"            "$USER"text
 echo ''''''''''$USER''''''''''
 echo """"""""$USER""""""""
-echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''
 echo $USER '' $USER $USER '' $USER '' $USER -n $USER
 echo "$USER""$USER""$USER"
 echo text"$USER"test
@@ -39,3 +38,5 @@ echo "aaa $ bbb"
 echo "aaa $ $ bbb"
 echo "aaa $ $ $ bbb"
 echo " $USER  $ "'$PWD'
+echo $USER'$USER'abcd
+echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''
