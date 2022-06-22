@@ -22,6 +22,9 @@ echo '$USER' "$USER" "text \' text"
 echo '$USER'
 echo '"$USER"'
 echo $USER " "
+echo $USER ' '
+echo $USER"  "
+echo $USER'  '
 echo "Users/$USER/file"
 echo "$USER""Users/$USER/file""'$USER'"'$USER'
 echo "$USER$USER$USER"

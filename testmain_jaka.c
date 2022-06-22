@@ -116,4 +116,16 @@ New issues in cleaned main (had no wifi today)
 	aaa aaa 
 	jmurovec$USERabcd$
 
+
+	echo '$USER'
+	echo ''$USER''
+
+	echo ''''''''''$USER'''''''''' 
+
+	echo '$USER'"$USER"'$USER' 
+
+	echo '"$USER"' '$USER'"""$USER" 
+
+ echo $USER'   '
+
 */

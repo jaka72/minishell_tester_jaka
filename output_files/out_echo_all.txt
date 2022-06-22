@@ -13,7 +13,7 @@ bonjour$
 bonjour$
 bonjour$
 aaa b$
-aaa bbb$
+aaa bbb $
 
 --- Test ECHO WITH OPTION -n  -------------------------
 '-n' six$-n-n eight$
@@ -34,7 +34,7 @@ text'jmurovec' $USER $
 text jmurovec jmurovec$
 $USER $
 text jmurovec jmurovectext$
-jmurovec$
+$USER$
 jmurovec$
 jmurovec jmurovec jmurovec jmurovec jmurovec -n jmurovec$
 jmurovecjmurovecjmurovec$
@@ -43,24 +43,25 @@ $USER jmurovec text ' text$
 $USER$
 "$USER"$
 jmurovec $
+jmurovec $
 Users/jmurovec/file$
 jmurovecUsers/jmurovec/file'jmurovec'$USER$
 jmurovecjmurovecjmurovec$
-$USERjmurovec$USER$
-"$USER" $USERjmurovec$
+$USER"$USER"$USER$
+"$USER" $USER"""$USER"$
 jmurovec=thallard$
 0$
-/Users/jmurovec/Desktop/projects/minishell_21jun/tester/file$
-/Users/jmurovec/Desktop/projects/minishell_21jun/tester/file$
+/Users/jmurovec/Desktop/projects/minishell_22jun_mainclone/tester/file$
+/Users/jmurovec/Desktop/projects/minishell_22jun_mainclone/tester/file$
 text textjmurovec ... jmurovec$
-/Users/jmurovec/Desktop/projects/minishell_21jun/tester$
+/Users/jmurovec/Desktop/projects/minishell_22jun_mainclone/tester$
 jmurovec $PWD$
 aaa $ bbb$
 aaa $ $ bbb$
 aaa $ $ $ bbb$
 jmurovec $ $PWD$
 jmurovec$USERabcd$
-jmurovec$USERtext oui oui oui oui jmurovec oui jmurovec$
+jmurovec$USERtext oui oui oui oui jmurovec oui jmurovec $
 
 --- Test ECHO - ESCAPE CHARACTER  -------------------------
 
