@@ -12,5 +12,5 @@ echo "bonjour"
 echo bonjour
 echo 'bonjour'
 echo ' \' ' \'
-echo "aaa" b
+ echo "aaa" b
 echo aaa bbb ''

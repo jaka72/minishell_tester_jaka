@@ -16,35 +16,41 @@ RES="\033[0m"
 
 ############################################################
 
-
 #make
+
+OUT="output_files"							# folder for all output files
+> $OUT/all_out_cat.txt			# wipe content before start
 
 test_syntax_error()
 {
-	filename="out_orig"
+	filename=$OUT/"out_orig"
 	while read -r line; do
 		# if [[ $line != ^[[* ]] && [[ $line != $ ]]   ;
 		if [[ $line != ^[[* ]] && [[ $line != $ ]]   ;
 		then
-			echo $line >> out_orig2
+			echo $line >> $OUT/out_orig2
 		else
-			: echo $line >> out_else
+			: echo $line >> $OUT/out_else
 		fi
 	done < "$filename"
 
 
-	filename="out_temp"
+	filename=$OUT/"out_temp"
 	while read -r line; do
 		# if [[ $line != ^[[* ]] && [[ $line != $ ]]   ;
 		if [[ $line != ^[[* ]] && [[ $line != $ ]]   ;
 		then
-			echo $line >> out_mini
+			echo $line >> $OUT/out_mini
+			echo $line >> $OUT/all_out_cat.txt
 		else
-			: echo $line >> out_else
+			: echo $line >> $OUT/out_else
 		fi
 	done < "$filename"
+
+	echo "" >> $OUT/all_out_cat.txt
+
 	msg=$3
-	DIFF=$(diff $1 $2)
+	DIFF=$(diff $OUT/$1 $OUT/$2)
 	if [ "$DIFF" == "" ] 
 	then
 		echo -e $GRN"[ OK ] " $GRE $msg $RES 
@@ -57,7 +63,7 @@ test_syntax_error()
 #############################################################################
 
 
-echo -e $YEL"\nTest output CAT"$RES
+echo -e $YEL"\nTEST CAT"$RES
 
  inputlines=(
 	 		"cat infile"
@@ -65,11 +71,9 @@ echo -e $YEL"\nTest output CAT"$RES
 	 		"cat -e infile"
 	 		"cat -e -n infile"
 	 		"cat -en infile"
-			"cat infile > out1"
-			"cat infile > out1 > out2"
-
-			# "env"	# first few lines are different, random string
-						)
+			# "cat infile > out1"			# CREATES NEW FILE, THIS IS NOT CHECKED
+			# "cat infile > out1 > out2"	# CREATES NEW FILE, THIS IS NOT CHECKED
+			)
 
 nr_elements=${#inputlines[@]}
 
@@ -78,14 +82,12 @@ while (( $i < $nr_elements ))
 do
 	input=${inputlines[$i]}
 	printf "  Test %3d:   %-30s   " $i "'$input'"
-	> out_temp; >out_mini; > out_orig; > out_orig2 
-	./minishell "$input" | cat -e > out_temp
-	eval $input | cat -e > out_orig
+	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig; > $OUT/out_orig2 
+	./minishell "$input" | cat -e > $OUT/out_temp
+	eval $input | cat -e > $OUT/out_orig
 	test_syntax_error "out_orig2" "out_mini" "valid"
 	((i=i+1))
 done
-
-
 
 echo ""
 

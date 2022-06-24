@@ -19,12 +19,12 @@ RES="\033[0m"
 
 #make
 OUT="output_files"
-> $OUT/out_various_examples_all.txt
+> $OUT/all_out_various_examples.txt
 j=0
 
 test_syntax_error()
 {
-	echo "Test $j" >> $OUT/out_various_examples_all.txt
+	echo "Test $j" >> $OUT/all_out_various_examples.txt
 
 	filename=$OUT/"out_orig"
 	while read -r line; do
@@ -44,11 +44,15 @@ test_syntax_error()
 		if [[ $line != ^[[* ]] && [[ $line != $ ]]   ;
 		then
 			echo $line >> $OUT/out_mini
-			echo $line >> $OUT/out_various_examples_all.txt
+			echo $line >> $OUT/all_out_various_examples.txt
 		else
 			: echo $line >> $OUT/out_else
 		fi
 	done < "$filename"
+
+	echo "" >> $OUT/all_out_various_examples.txt
+
+
 	msg=$3
 #	DIFF=$(diff $1 $2)
 	DIFF=$(diff <(head -n 10 $OUT/$1)  <(head -n 10 $OUT/$2))
@@ -58,7 +62,7 @@ test_syntax_error()
 	else
 		echo -e $RED"[ KO ]"$RES 
 	fi
-	echo "" >> $OUT/out_various_examples_all.txt
+	echo "" >> $OUT/all_out_various_examples.txt
 	((j=j+1))
 }
 
@@ -66,7 +70,7 @@ test_syntax_error()
 #############################################################################
 
 
-echo -e $YEL"\nTest output VARIOUS EXAMPLES"$RES
+echo -e $YEL"\nTEST VARIOUS EXAMPLES"$RES
 
  inputlines=(
 			"env"	# JUST CHECKS FIRST 10 LINES OF OUTPUT

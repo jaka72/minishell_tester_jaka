@@ -1,0 +1,32 @@
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+7 7 79$
+7 7 79$
+7 7 79$
+readme$
+1 1 7$
+7 7 79$
+infile$
+input_files_echo$
+minishell$
+output_files$
+readme$
+run_tester.sh$
+test_files$

@@ -98,34 +98,20 @@ New issues in cleaned main (had no wifi today)
 	- To check for external functions, to find forbidden:
 		nm -u minishell   OR 	onjdump -t
 	Check exit asdsdfg, exit code linux 255, Mac 2 ??? Is it really so?
-
-
-
 	echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''
 	echo $USER'$USER'text oui 
-
-
 	jmurovec$USERtext oui oui oui oui jmurovec oui jmurovec$
 	jmurovec$USERtext oui oui oui oui jmurovec oui jmurovec 
 	
 	abc  qwe
-
 	abc qwe 
-
 	aaa aaa
 	aaa aaa 
 	jmurovec$USERabcd$
-
-
 	echo '$USER'
 	echo ''$USER''
-
 	echo ''''''''''$USER'''''''''' 
-
 	echo '$USER'"$USER"'$USER' 
-
 	echo '"$USER"' '$USER'"""$USER" 
-
  echo $USER'   '
-
 */

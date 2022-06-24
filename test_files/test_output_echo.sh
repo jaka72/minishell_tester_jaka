@@ -19,7 +19,7 @@ RES="\033[0m"
 
 #make
 OUT="output_files"				# folder for all output files
-> $OUT/out_echo_all.txt			# wipe content before start
+> $OUT/all_out_echo.txt.txt			# wipe content before start
 
 test_syntax_error()
 {
@@ -41,7 +41,7 @@ test_syntax_error()
 		if [[ $line != ^[[* ]] && [[ $line != $ ]]   ;
 		then
 			echo $line >> $OUT/out_mini
-			echo $line >> $OUT/out_echo_all.txt
+			echo $line >> $OUT/all_out_echo.txt.txt
 		else
 			: echo $line >> $OUT/out_else
 		fi
@@ -60,31 +60,16 @@ test_syntax_error()
 #############################################################################
 
 
-echo -e $YEL"\nTest ECHO - SOME EXAMPLES"$RES
-echo -e "\n--- Test ECHO - SOME EXAMPLES -------------------------" >> $OUT/out_echo_all.txt
+echo -e $YEL"\nTEST ECHO - SOME EXAMPLES"$RES
+echo -e "\n--- TEST ECHO - SOME EXAMPLES -------------------------" >> $OUT/all_out_echo.txt.txt
 
 ### STORE LINES FROM FILE INTO ARRAY ###################
-FILE="test_files_echo/input_for_echo"
+FILE="input_files_echo/input_for_echo"
 i=0
 while read line; do
   ARRAY01[$i]=$line
   i=$((i+1))
 done < $FILE
-
-### PRINT STORED LINES FROM ARRAY - VERSION 1 ######################
-# for (( i=0; i<${#ARRAY[@]}; i++ )); do
-# 	echo -n
-#   	#echo ${ARRAY14[i]}
-# done
-
-### PRINT STORED LINES FROM ARRAY - VERSION 2 #####################
-# i=0
-# nr_elements=${#ARRAY[@]}
-# while (( $i < $nr_elements ))
-# do
-# 	echo ${ARRAY[$i]}
-# 	((i=i+1))
-# done
 
 
 i=0
@@ -103,12 +88,12 @@ echo ""
 #############################################################################
 
 
-echo -e $YEL"\nTest ECHO WITH OPTION -n"$RES
-echo -e "\n--- Test ECHO WITH OPTION -n  -------------------------" >> $OUT/out_echo_all.txt
+echo -e $YEL"\nTEST ECHO, WITH OPTION -n"$RES
+echo -e "\n--- TEST ECHO, WITH OPTION -n  -------------------------" >> $OUT/all_out_echo.txt.txt
 echo -e $RED"   Incorrect output from tester !!!"$RES
 
 ### STORE LINES FROM FILE INTO ARRAY ###################
-FILE="test_files_echo/input_for_echo_option_n"
+FILE="input_files_echo/input_for_echo_option_n"
 i=0
 while read line; do
   ARRAY02[$i]=$line
@@ -131,12 +116,12 @@ echo ""
 ##################################################################################
 
 
-echo -e $YEL"\nTest ECHO - TILDA AND DOLLAR"$RES
-echo -e "\n\n--- Test ECHO - TILDA AND DOLLAR  -------------------------" >> $OUT/out_echo_all.txt
+echo -e $YEL"\nTEST ECHO - TILDA AND DOLLAR"$RES
+echo -e "\n\n--- TEST ECHO - TILDA AND DOLLAR  -------------------------" >> $OUT/all_out_echo.txt.txt
 
 
 ### STORE LINES FROM FILE INTO ARRAY ###################
-FILE="test_files_echo/input_for_echo_tilda_and_dollar"
+FILE="input_files_echo/input_for_echo_tilda_and_dollar"
 i=0
 while read line; do
   ARRAY03[$i]=$line
@@ -160,9 +145,9 @@ echo ""
 
 
 
-echo -e $YEL"\nTest ECHO - ESCAPE CHARACTER"$RES
-echo -e     "\n--- Test ECHO - ESCAPE CHARACTER  -------------------------" >> $OUT/out_echo_all.txt
-echo -e $RED"   Backslash not mandatory // Incorrect output from tester !!!"$RES
+echo -e $YEL"\nTEST ECHO - ESCAPE CHARACTER"$RES
+echo -e     "\n--- TEST ECHO - ESCAPE CHARACTER  -------------------------" >> $OUT/all_out_echo.txt.txt
+echo -e $RED"   Incorrect output from tester !!!"$RES
 
 ### NOT WORKING CASES
 	# echo '\" ' " \"\""
@@ -170,15 +155,16 @@ echo -e $RED"   Backslash not mandatory // Incorrect output from tester !!!"$RES
 
 
 ### STORE LINES FROM FILE INTO ARRAY ###################
-FILE="test_files_echo/input_for_echo_escape_char"
+FILE="input_files_echo/input_for_echo_escape_char"
 i=0
 while read line; do
-  #ARRAY04[$i]=$line
+  ARRAY04[$i]=$line
   i=$((i+1))
 done < $FILE
 
 i=0
-nr_elements=${#ARRAY04[@]}
+# nr_elements=${#ARRAY04[@]}
+nr_elements=0
 while (( $i < $nr_elements ))
 do
 	printf "  Test %3d:   [%-30s]   " $i "${ARRAY04[$i]}"
@@ -196,15 +182,15 @@ echo ""
 
 
 
-echo -e $YEL"\nTest ECHO - WITH QUOTES"$RES
-echo -e     "\n--- Test ECHO - WITH QUOTES  -------------------------" >> $OUT/out_echo_all.txt
+echo -e $YEL"\nTEST ECHO - WITH QUOTES"$RES
+echo -e     "\n--- Test ECHO - WITH QUOTES  -------------------------" >> $OUT/all_out_echo.txt.txt
 
 
 ### STORE LINES FROM FILE INTO ARRAY ###################
-FILE="test_files_echo/input_for_echo_with_quotes"
+FILE="input_files_echo/input_for_echo_with_quotes"
 i=0
 while read line; do
-  ARRAY04[$i]=$line
+ ARRAY04[$i]=$line
   i=$((i+1))
 done < $FILE
 

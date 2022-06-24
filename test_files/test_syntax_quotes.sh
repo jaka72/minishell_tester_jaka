@@ -12,26 +12,30 @@ RES="\033[0m"
 
 ############################################################
 
-error_message="Minishell: Syntax error"
+error_message="minishell: Syntax error"
 
 ############################################################
 
 
 #make
 
+OUT="output_files"							# folder for all output files
+> $OUT/all_out_quotes_syntax_err.txt			# wipe content before start
+
 test_syntax_error()
 {
-	filename="out_temp"
+	filename=$OUT/"out_temp"
 	while read -r line; do
 		if [[ $line != ^[[* ]] && [[ $line != $ ]]   ;
 		then
-			echo $line >> out_mini
+			echo $line >> $OUT/out_mini
+			echo $line >> $OUT/all_out_quotes_syntax_err.txt
 		else
-			: echo $line >> out_else
+			: echo $line >> $OUT/out_else
 		fi
 	done < "$filename"
 	msg=$3
-	DIFF=$(diff $1 $2)
+	DIFF=$(diff $OUT/$1 $OUT/$2)
 	if [ "$DIFF" == "" ] 
 	then
 		echo -e $GRN"[ OK ] " $GRE $msg $RES 
@@ -41,10 +45,87 @@ test_syntax_error()
 }
 
 
+
+
+
+##############################################################################
+
+
+echo -e $YEL"\nTEST QUOTES: valid input, no error message"$RES
+# echo -e $YEL"\n ( Not handled yet )"$RES
+
+ inputlines=(
+	 		'cat in""file'
+			'ca""t infile'
+			'cat in"f"ile'
+			)
+
+nr_elements=${#inputlines[@]}
+# TURN ON/OFF 
+#nr_elements=0
+
+
+i=0
+while (( $i < $nr_elements ))
+do
+	input=${inputlines[$i]}
+	printf $CYN"  Test %3d:   %-30s   "$GRE $i "'$input'"
+	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig
+
+	./minishell "$input" > $OUT/out_temppre ; cat -e $OUT/out_temppre > $OUT/out_temp
+	eval $input > $OUT/out_origpre ; cat -e $OUT/out_origpre > $OUT/out_orig
+	
+	test_syntax_error "out_orig" "out_mini" "valid"
+	((i=i+1))
+done
+
+echo ""
+
+
+
+
+
+##############################################################################
+
+
+echo -e $YEL"\nTEST QUOTES: valid input, with error msg stderr: Command not found"$RES
+# echo -e $YEL"\n ( Not handled yet )"$RES
+
+ inputlines=(
+	 		'abc""efg'
+	 		'abc " " efg'
+	 		'abc"x"efg'
+	 		'abc"d"e"f"g'
+			'abc "" efg'
+			'cat "" infile'		# prints both stderror and output content into outfile
+			)
+
+nr_elements=${#inputlines[@]}
+# TURN ON/OFF 
+#nr_elements=0
+
+
+i=0
+while (( $i < $nr_elements ))
+do
+	input=${inputlines[$i]}
+	printf $CYN"  Test %3d:   %-30s   "$GRE $i "'$input'"
+	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig
+
+	./minishell "$input" > $OUT/out_temppre ; cat -e $OUT/out_temppre > $OUT/out_temp
+	eval $input > $OUT/out_origpre ; cat -e $OUT/out_origpre > $OUT/out_orig
+	
+	test_syntax_error "out_orig" "out_mini" "valid"
+	((i=i+1))
+	echo
+done
+
+echo ""
+
 #############################################################################
 
 
-echo -e $YEL"\nTest syntax error: QUOTES"$RES
+echo -e $YEL"\nTEST QUOTES, syntax error"$RES
 
  inputlines=(
 	 		'abc"efg'
@@ -65,69 +146,16 @@ while (( $i < $nr_elements ))
 do
 	input=${inputlines[$i]}
 	printf "  Test %3d:   %-30s   " $i "[$input]"
-	> out_temp; >out_mini; > out_orig
-	./minishell "$input" | cat -e > out_temp
-	echo "Is this printing?"
-	#./minishell "$input" | 2> out_temp0 | cat -e out_temp0 > out_temp
-	echo $error_message | cat -e > out_orig
+	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig
+	# ./minishell "$input" | cat -e > out_temp
+	# echo $error_message | cat -e > out_orig
+
+	./minishell "$input" 2> $OUT/out_temppre ; cat -e $OUT/out_temppre > $OUT/out_temp
+	echo $error_message > $OUT/out_origpre ; cat -e $OUT/out_origpre > $OUT/out_orig
+
 	test_syntax_error "out_orig" "out_mini" "error"
 	((i=i+1))
 done
 
-
-
-
-##############################################################################
-
-
-echo -e $YEL"\nTest QUOTES: valid input: Should print error into stderr: Command not found"$RES
-echo -e $YEL"\n ( Not handled yet )"$RES
-
- inputlines=(
-	 		'cat in""file'
-	 		# 'abc""efg'
-
-	 		# 'ca""t infile'
-			'ca""t infile'
-
-	 		# 'abc "" efg'
-			'cat "" infile'		# prints both stderror and output content into outfile
-
-	 		# 'abc " " efg'
-
-	 		# 'abc"x"efg'
-			'cat in"f"ile'
-
-
-	 		# 'abc"d"e"f"g'
-			)
-
-nr_elements=${#inputlines[@]}
-# TURN ON/OFF 
-#nr_elements=0
-
-
-i=0
-while (( $i < $nr_elements ))
-do
-	input=${inputlines[$i]}
-	printf "  Test %3d:   %-30s   " $i "'$input'"
-	> out_temp; >out_mini; > out_orig
-	./minishell "$input" | cat -e > out_temp
-	#echo "syntax error from initial check: pipes; exit" | cat -e > out_orig
-
-	## eval "$input" | cat -e 2> out_orig ==> CAT get's no input after pipe
-	eval "$input" > out_orig2
-	cat -e out_orig2 > out_orig
-	test_syntax_error "out_orig" "out_mini" "valid"
-	((i=i+1))
-done
-
-
-echo ""
-
-
-##################################################################################
-
-
+echo
 

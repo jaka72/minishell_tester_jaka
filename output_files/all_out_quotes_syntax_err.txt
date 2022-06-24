@@ -1,0 +1,37 @@
+hello world!$
+bla bla bla$
+12345678$
+456$
+789$
+999$
+end of file!$
+hello world!$
+bla bla bla$
+12345678$
+456$
+789$
+999$
+end of file!$
+hello world!$
+bla bla bla$
+12345678$
+456$
+789$
+999$
+end of file!$
+hello world!$
+bla bla bla$
+12345678$
+456$
+789$
+999$
+end of file!$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$
+minishell: Syntax error$

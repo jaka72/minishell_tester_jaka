@@ -1,0 +1,83 @@
+
+--- TEST ECHO - SOME EXAMPLES -------------------------
+aaa bbb$
+aaa | | bbb$
+aaa | | bbb ccc$
+ls -la$
+ls -la$
+aaa bbb$
+echo$
+rhobebou$
+stop barking$
+bonjour$
+bonjour$
+bonjour$
+aaa b$
+
+--- TEST ECHO, WITH OPTION -n  -------------------------
+'-n' six$-n-n eight$
+-n-n nine$
+
+--- TEST ECHO - TILDA AND DOLLAR  -------------------------
+~$
+~$
+$$
+~123$
+123~$
+jaka$
+jaka$
+'jaka'$
+'jaka' $
+textjaka$
+text'jaka' $USER $
+text jaka jaka$
+$USER $
+text jaka jakatext$
+jaka$
+jaka$
+jaka$USERtext oui oui oui oui jaka oui jaka $
+jaka jaka jaka jaka jaka -n jaka$
+jakajakajaka$
+textjakatest$
+$USER jaka text ' text$
+$USER$
+"$USER"$
+jaka $
+Users/jaka/file$
+jakaUsers/jaka/file'jaka'$USER$
+jakajakajaka$
+$USERjaka$USER$
+"$USER" $USERjaka$
+jaka=thallard$
+0$
+/home/jaka/Desktop/minishell/minishell_24jun00/tester/file$
+/home/jaka/Desktop/minishell/minishell_24jun00/tester/file$
+text textjaka ... jaka$
+/home/jaka/Desktop/minishell/minishell_24jun00/tester$
+jaka $PWD$
+aaa $ bbb$
+aaa $ $ bbb$
+aaa $ $ $ bbb$
+jaka $ $PWD$
+
+--- TEST ECHO - ESCAPE CHARACTER  -------------------------
+
+--- Test ECHO - WITH QUOTES  -------------------------
+aaa b$
+aaab$
+aaab$
+aaa | | bbb$
+"$
+" $
+" aaa$
+'$
+' $
+' aaa$
+' aaa$
+aa'aa$
+aa''aa$
+aa"aa$
+aa""aa$
+aa'bb'aa$
+aa"bb"aa$
+123hello456$

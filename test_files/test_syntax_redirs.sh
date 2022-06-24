@@ -11,7 +11,7 @@ RES="\033[0m"
 ############################################################
 
 # error_message="Minishell: Syntax error with REDIRECTS"
-error_message="Minishell: Syntax error"
+error_message="minishell: Syntax error"
 
 ############################################################
 
@@ -35,7 +35,7 @@ error_message="Minishell: Syntax error"
 # print_input_lines
 
 OUT="output_files"							# folder for all output files
-> $OUT/out_redirs_stxerr_all.txt			# wipe content before start
+> $OUT/all_out_redirs_syntax_err.txt			# wipe content before start
 
 test_syntax_error()
 {
@@ -44,11 +44,12 @@ test_syntax_error()
 		if [[ $line != ^[[* ]] && [[ $line != $ ]]   ;
 		then
 			echo $line >> $OUT/out_mini
-			echo $line >> $OUT/out_redirs_stxerr_all.txt
+			echo $line >> $OUT/all_out_redirs_syntax_err.txt
 		else
 			: #echo $line >> out_mini
 		fi
 	done < "$filename"
+
 	msg=$3
 	DIFF=$(diff $OUT/$1 $OUT/$2)
 	if [ "$DIFF" == "" ] 
@@ -61,7 +62,7 @@ test_syntax_error()
 
 
 ### SYNTAX ERRORS ############################################
-echo -e $YEL"\nTest INPUT redirects: syntax errors"$RES
+echo -e $YEL"\nREDIRECTIONS: syntax errors"$RES
 
 inputlines=(
 			"<"
@@ -92,63 +93,13 @@ do
 	input=${inputlines[$i]} # is next form array
 	printf "  Test %3d:   %-40s   " $i  "'$input'"
 	> $OUT/out_temp; >$OUT/out_mini; > $OUT/out_orig
-	./minishell "$input" | cat -e > $OUT/out_temp
-	echo $error_message | cat -e > $OUT/out_orig
-	test_syntax_error "out_orig" "out_mini" "error" 
-	((i=i+1))
-done
+	# ./minishell "$input" | cat -e > $OUT/out_temp
+	# echo $error_message | cat -e > $OUT/out_orig
+
+	./minishell "$input" 2> $OUT/out_temppre ; cat -e $OUT/out_temppre > $OUT/out_temp
+	echo $error_message > $OUT/out_origpre ; cat -e $OUT/out_origpre > $OUT/out_orig
 
 
-
-### SYNTAX ERRORS, ARROW WITH PIPE #######################################################
-
-echo -e $YEL"\nTest INPUT redirects: syntax errors, arrow with pipe"$RES
-
-
-inputlines=(
-			"ls | < | outfile"
-			"< infile cat | < | outfile"
-			)
-
-nr_elements=${#inputlines[@]}
-
-i=0
-while (( $i < $nr_elements ))
-do
-	input=${inputlines[$i]} # is next form array
-	printf "  Test %3d:   %-40s   " $i  "'$input'"
-	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig
-	./minishell "$input" | cat -e > $OUT/out_temp
-	echo $error_message | cat -e > $OUT/out_orig
-	test_syntax_error "out_orig" "out_mini" "error" 
-	((i=i+1))
-done
-
-### SYNTAX ERRORS,HEREDOC #######################################################
-
-echo -e $YEL"\nREDIRECTIONS: Syntax errors with heredoc"$RES
-echo -e $YEL"              Test not working yet yet"$RES
-
-
-inputlines=(
-			## HEREDOC not handled yet
-			# "<< here >< outfile"
-			# "<< here cat | wc >< outfile"
-			# "<> here cat | wc > outfile"
-			# "<< here > < outfile"
-			# "<< here >> < outfile"
-			)
-
-nr_elements=${#inputlines[@]}
-
-i=0
-while (( $i < $nr_elements ))
-do
-	input=${inputlines[$i]} # is next form array
-	printf "  Test %3d:   %-40s   " $i  "'$input'"
-	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig
-	./minishell "$input" | cat -e > $OUT/out_temp
-	echo $error_message | cat -e > $OUT/out_orig
 	test_syntax_error "out_orig" "out_mini" "error" 
 	((i=i+1))
 done
@@ -219,11 +170,104 @@ echo ""
 
 
 
+############################################################
+
+echo -e $YEL"\nREDIRECTIONS: pipes with arrows, Error message: No such file or directory "$RES
+
+inputlines=(
+			"ls | < xxxyyy"
+			"ls|<xxxyyy"
+			"< xxxyyy cat -e > out"
+			"< xxxyyy cat -e | < infile | < infile"
+			"< infile cat -e | < ls | < infile"	
+			)
+
+nr_elements=${#inputlines[@]}
+
+i=0
+while (( $i < $nr_elements ))
+do
+	echo ""
+	input=${inputlines[$i]} # is next form array
+	printf $CYN"  Test %3d:   %-20s   "$GRE $i  "'$input'"
+	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig
+	./minishell "$input" | cat -e > $OUT/out_temp
+	#echo "$input" | cat -e > out_orig
+	eval $input | cat -e > $OUT/out_orig
+	#echo "syntax error from initial check: redirections; exit" | cat -e > out_orig
+	test_syntax_error "out_orig" "out_mini" "error" 
+	((i=i+1))
+done
+
+echo ""
+
+
+### SYNTAX ERRORS, ARROW WITH PIPE #######################################################
+
+echo -e $YEL"\nREDIRECTIONS: syntax errors, arrow with pipe"$RES
+
+
+inputlines=(
+			"ls | < | outfile"
+			"< infile cat | < | outfile"
+			)
+
+nr_elements=${#inputlines[@]}
+
+i=0
+while (( $i < $nr_elements ))
+do
+	input=${inputlines[$i]} # is next form array
+	printf "  Test %3d:   %-40s   " $i  "'$input'"
+	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig
+	./minishell "$input" 2> $OUT/out_temppre ; cat -e $OUT/out_temppre > $OUT/out_temp
+	echo $error_message > $OUT/out_origpre ; cat -e $OUT/out_origpre > $OUT/out_orig
+	test_syntax_error "out_orig" "out_mini" "error" 
+	((i=i+1))
+done
+
+echo
+
+
+
+### SYNTAX ERRORS,HEREDOC #######################################################
+
+echo -e $YEL"\nREDIRECTIONS: Syntax errors with HEREDOC"$RES
+echo -e $RED"              Test not working yet yet"$RES
+
+
+inputlines=(
+			## HEREDOC not handled yet
+			# "<< here >< outfile"
+			# "<< here cat | wc >< outfile"
+			# "<> here cat | wc > outfile"
+			# "<< here > < outfile"
+			# "<< here >> < outfile"
+			)
+
+nr_elements=${#inputlines[@]}
+
+i=0
+while (( $i < $nr_elements ))
+do
+	input=${inputlines[$i]} # is next form array
+	printf "  Test %3d:   %-40s   " $i  "'$input'"
+	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig
+	./minishell "$input" | cat -e > $OUT/out_temp
+	echo $error_message | cat -e > $OUT/out_orig
+	test_syntax_error "out_orig" "out_mini" "error" 
+	((i=i+1))
+done
+
+echo
+
+
+
 
 #### VALID INPUT, HEREDOC ###################################################################
 
 echo -e $YEL"\nREDIRECTIONS: valid input with HEREDOC "$RES
-echo -e $YEL"              Test not working yet"$RES
+echo -e $RED"              Test not working yet"$RES
 
 #SOMETHING IS NOT CORRECT HERE 
 
@@ -254,39 +298,7 @@ do
 	((i=i+1))
 done
 
-
-
-
-############################################################
-
-echo -e $YEL"\nREDIRECTIONS: pipes with arrows, Error message: No such file or directory "$RES
-
-inputlines=(
-			"ls | < xxxyyy"
-			"ls|<xxxyyy"
-			"< xxxyyy cat -e > out"
-			"< xxxyyy cat -e | < infile | < infile"
-			"< infile cat -e | < ls | < infile"	
-			)
-
-nr_elements=${#inputlines[@]}
-
-i=0
-while (( $i < $nr_elements ))
-do
-	input=${inputlines[$i]} # is next form array
-	printf "  Test %3d:   %-20s   " $i  "'$input'"
-	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig
-	./minishell "$input" | cat -e > $OUT/out_temp
-	#echo "$input" | cat -e > out_orig
-	eval $input | cat -e > $OUT/out_orig
-	#echo "syntax error from initial check: redirections; exit" | cat -e > out_orig
-	test_syntax_error "out_orig" "out_mini" "valid" 
-	((i=i+1))
-done
-
-rm out
-echo ""
+echo
 
 
 ############################################################

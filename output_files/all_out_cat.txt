@@ -1,0 +1,40 @@
+hello world!$
+bla bla bla$
+12345678$
+456$
+789$
+999$
+end of file!$
+
+1 hello world!$
+2 bla bla bla$
+3 12345678$
+4 456$
+5 789$
+6 999$
+7 end of file!$
+
+hello world!$$
+bla bla bla$$
+12345678$$
+456$$
+789$$
+999$$
+end of file!$$
+
+1 hello world!$$
+2 bla bla bla$$
+3 12345678$$
+4 456$$
+5 789$$
+6 999$$
+7 end of file!$$
+
+1 hello world!$$
+2 bla bla bla$$
+3 12345678$$
+4 456$$
+5 789$$
+6 999$$
+7 end of file!$$
+
