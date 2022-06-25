@@ -14,15 +14,15 @@ make
 cp minishell ./tester/minishell
 cd ./tester
 
-bash ./test_files/test_output_echo.sh			# OK OK
+# bash ./test_files/test_output_echo.sh			# OK OK
 
-bash ./test_files/test_syntax_quotes.sh			# OK OK
+ bash ./test_files/test_syntax_quotes.sh			# OK OK
 
-bash ./test_files/test_syntax_pipes.sh 			# OK OK
+# bash ./test_files/test_syntax_pipes.sh 			# OK OK
 
-bash ./test_files/test_syntax_redirs.sh			# OK OK
+# bash ./test_files/test_syntax_redirs.sh			# OK OK
 
-bash  ./test_files/test_output_cat.sh			# OK OK
+# bash  ./test_files/test_output_cat.sh			# OK OK
 
-bash  ./test_files/test_output_various.sh		# OK OK
+# bash  ./test_files/test_output_various.sh		# OK OK
 

@@ -50,6 +50,31 @@ test_syntax_error()
 
 ##############################################################################
 
+check_error_message()
+{
+	found_orig=0
+	found_mini=0
+	err_msg="command not found"
+
+	if grep -i -q "$err_msg" $OUT/out_orig ; then
+		found_orig=1
+	fi
+	if grep -i -q "$err_msg" $OUT/out_temp ; then
+		found_mini=1
+	fi
+
+	msg=$3
+	
+	if [ $found_orig = 1 ] && [ $found_mini = 1 ] ; then
+		echo -e $GRN"[ OK ] " $GRE $msg $RES		
+	else
+		echo -e $RED"[ KO ]"$RES 
+	fi
+}
+
+
+##############################################################################
+
 
 echo -e $YEL"\nTEST QUOTES: valid input, no error message"$RES
 # echo -e $YEL"\n ( Not handled yet )"$RES
@@ -97,8 +122,8 @@ echo -e $YEL"\nTEST QUOTES: valid input, with error msg stderr: Command not foun
 	 		'abc"x"efg'
 	 		'abc"d"e"f"g'
 			'abc "" efg'
-			'cat "" infile'		# prints both stderror and output content into outfile
-			)
+			# 'cat "" infile'		# prints both stderror and output content into outfile
+			)						#  		err: No such file ...
 
 nr_elements=${#inputlines[@]}
 # TURN ON/OFF 
@@ -112,12 +137,12 @@ do
 	printf $CYN"  Test %3d:   %-30s   "$GRE $i "'$input'"
 	> $OUT/out_temp; > $OUT/out_mini; > $OUT/out_orig
 
-	./minishell "$input" > $OUT/out_temppre ; cat -e $OUT/out_temppre > $OUT/out_temp
-	eval $input > $OUT/out_origpre ; cat -e $OUT/out_origpre > $OUT/out_orig
+	./minishell "$input" 2> $OUT/out_temppre ; cat -e $OUT/out_temppre > $OUT/out_temp
+	eval $input 2> $OUT/out_origpre ; cat -e $OUT/out_origpre > $OUT/out_orig
 	
-	test_syntax_error "out_orig" "out_mini" "valid"
+	# test_syntax_error "out_orig" "out_mini" "valid"
+	check_error_message "out_orig" "out_mini" "valid"
 	((i=i+1))
-	echo
 done
 
 echo ""
