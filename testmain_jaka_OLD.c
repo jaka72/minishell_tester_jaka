@@ -11,8 +11,7 @@ SAMPLE TEST:
 make && valgrind valgrind --leak-check=full --show-reachable=yes   ./minishell 2> outfile
 */
 
-// t_global	st_base;
-struct termios	g_termios_saved;
+t_global	g_gl;
 
 void	free_and_read(t_source *src, int history)
 {
@@ -20,13 +19,7 @@ void	free_and_read(t_source *src, int history)
 		add_history(src->inputline);	
 	if (src->inputline != NULL)
 		free(src->inputline);
-	src->inputline = readline("minishell > ");
-}
-
-static	void	unused_arg(int argc, char *argv[])
-{
-	(void) argc;
-	(void) argv;
+	src->inputline = readline(g_gl.prompt);
 }
 
 // ORIGINAL FROM testmain.c
@@ -37,12 +30,10 @@ int	main(int argc, char *argv[], char *envp[])
 //	t_cmd		*cmd_list;
 	//char		*line;
 
-	int			ex_stat;
-	t_util		st_base;
-
-	unused_arg(argc, argv);
+	(void) argc;
+	(void) argv;
 	// src.inputline = NULL;
-	ms_init(envp, &ex_stat, &st_base, &src);
+	ms_init(envp);
 	//free_and_read(&src, 0);
 
 	//line = readline(g_gl.prompt);
@@ -52,14 +43,15 @@ int	main(int argc, char *argv[], char *envp[])
 		//printf(GRN"tester mode:\n"RES);
 		src.inputline = argv[1];
 		src.inputline_size = strlen(src.inputline);
-		if (check_syntax_errors(&src, &ex_stat) != 0)
+		if (check_syntax_errors(&src) != 0)
 		{
 			return (258);
 		}
-		st_base.start_cmd = make_commands(&src);
-		ex_stat = run_cmd(&ex_stat, &st_base);
-		free_tcmd(&st_base);
-		clean_data(ex_stat, "", &st_base);
+		g_gl.start_cmd = make_commands(&src);
+		g_gl.g_status = run_cmd();
+		free_tcmd();
+		clean_data(g_gl.g_status, NULL);
+		//printf(GRN"\nexit! (tester mode)\n\n"RES);
 		return (0);
 	}
 	else
@@ -96,9 +88,7 @@ int	main(int argc, char *argv[], char *envp[])
 	}
 
 	//system("leaks minishell");
-//	return (clean_data(g_gl.g_status, "exit\n"));
-	return (clean_data(ex_stat, "exit (tester mode)\n", &st_base));
-
+	return (clean_data(g_gl.g_status, "exit\n"));
 }
 
 /*

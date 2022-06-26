@@ -17,7 +17,8 @@ aaa bbb $
 
 --- TEST ECHO, WITH OPTION -n  -------------------------
 '-n' six$-n-n eight$
--n-n nine$
+-n-n nine$- n ten$
+
 
 --- TEST ECHO - TILDA AND DOLLAR  -------------------------
 ~$

@@ -17,16 +17,20 @@ minishell: Syntax error$
 minishell: Syntax error$
 minishell: Syntax error$
 minishell: Syntax error$
-7 7 79$
-7 7 79$
-7 7 79$
+10 10 134$
+10 10 134$
+10 10 134$
 readme$
-1 1 7$
-7 7 79$
+testmain_jaka_OLD.c$
+2 2 27$
+10 10 134$
 infile$
 input_files_echo$
 minishell$
 output_files$
 readme$
 run_tester.sh$
+test_cd.sh$
+test_cd_withi_minish.sh$
 test_files$
+testmain_jaka_OLD.c$

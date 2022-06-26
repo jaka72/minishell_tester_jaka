@@ -78,8 +78,10 @@ _=./minishell$
 
 
 Test 1
-infile$$
+testmain_jaka_OLD.c$$
 readme$$
+test_cd.sh$$
+test_cd_withi_minish.sh$$
 run_tester.sh$$
 minishell$$
 input_files_echo$$
@@ -94,7 +96,10 @@ minishell$$$$$$$$$$$$$$$$$
 output_files$$$$$$$$$$$$$$$$$
 readme$$$$$$$$$$$$$$$$$
 run_tester.sh$$$$$$$$$$$$$$$$$
+test_cd.sh$$$$$$$$$$$$$$$$$
+test_cd_withi_minish.sh$$$$$$$$$$$$$$$$$
 test_files$$$$$$$$$$$$$$$$$
+testmain_jaka_OLD.c$$$$$$$$$$$$$$$$$
 
 
 Test 3

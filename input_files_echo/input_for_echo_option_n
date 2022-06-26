@@ -7,3 +7,4 @@ echo "-n '-n'" six
 echo "-nnnn" seven
 echo -n"-n" eight
 echo "-n -n -n"-n nine
+echo "- n" ten
