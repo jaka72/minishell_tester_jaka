@@ -1,0 +1,1 @@
+echo "Echoed from my_command_bash.sh"
