@@ -3,6 +3,9 @@ README
 
 ![alt text](https://github.com/jaka72/minishell_tester_jaka/master/screenschot.png?raw=true)
 
+<!-- <img src="https://github.com/jaka72/minishell_tester_jaka/master/screenschot.png" alt="Alt text" title="Optional title"> -->
+<img src="https://github.com/jaka72/minishell_tester_jaka/screenschot.png" alt="Alt text" title="Optional title">
+
 A) The Tester folder should be in the same folder where you have 
 	your executable file ./minishell  
 
