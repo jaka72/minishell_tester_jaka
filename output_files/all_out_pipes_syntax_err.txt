@@ -34,3 +34,27 @@
 --- Test syntax error PIPES with words -------------------------
 
 --- TEST PIPES, VALID INPUT -------------------------
+
+--- Test syntax error PIPES -------------------------
+
+--- Test syntax error PIPES with words -------------------------
+
+--- TEST PIPES, VALID INPUT -------------------------
+
+--- Test syntax error PIPES -------------------------
+
+--- Test syntax error PIPES with words -------------------------
+
+--- TEST PIPES, VALID INPUT -------------------------
+
+--- Test syntax error PIPES -------------------------
+
+--- Test syntax error PIPES with words -------------------------
+
+--- TEST PIPES, VALID INPUT -------------------------
+
+--- Test syntax error PIPES -------------------------
+
+--- Test syntax error PIPES with words -------------------------
+
+--- TEST PIPES, VALID INPUT -------------------------

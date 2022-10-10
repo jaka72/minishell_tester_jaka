@@ -17,20 +17,28 @@ minishell: Syntax error$
 minishell: Syntax error$
 minishell: Syntax error$
 minishell: Syntax error$
-10 10 134$
-10 10 134$
-10 10 134$
+14 14 193$
+14 14 193$
+14 14 193$
+my_command$
+my_command.c$
+my_command_bash.sh$
 readme$
+testmain_jaka.c$
 testmain_jaka_OLD.c$
-2 2 27$
-10 10 134$
+6 6 86$
+14 14 193$
 infile$
 input_files_echo$
 minishell$
+my_command$
+my_command.c$
+my_command_bash.sh$
 output_files$
 readme$
 run_tester.sh$
 test_cd.sh$
 test_cd_withi_minish.sh$
 test_files$
+testmain_jaka.c$
 testmain_jaka_OLD.c$

@@ -26,43 +26,43 @@ aaa bbb $
 $$
 ~123$
 123~$
-jaka$
-jaka$
-'jaka'$
-'jaka' $
-textjaka$
-text'jaka' $USER $
-text jaka jaka$
+jmurovec$
+jmurovec$
+'jmurovec'$
+'jmurovec' $
+textjmurovec$
+text'jmurovec' $USER $
+text jmurovec jmurovec$
 $USER $
-text jaka jakatext$
-jaka$
-jaka$
-jaka jaka jaka jaka jaka -n jaka$
-jakajakajaka$
-textjakatest$
-$USER jaka text ' text$
+text jmurovec jmurovectext$
+jmurovec$
+jmurovec$
+jmurovec jmurovec jmurovec jmurovec jmurovec -n jmurovec$
+jmurovecjmurovecjmurovec$
+textjmurovectest$
+$USER jmurovec text ' text$
 $USER$
 "$USER"$
-jaka $
-jaka $
-Users/jaka/file$
-jakaUsers/jaka/file'jaka'$USER$
-jakajakajaka$
-$USERjaka$USER$
-"$USER" $USERjaka$
-jaka=thallard$
+jmurovec $
+jmurovec $
+Users/jmurovec/file$
+jmurovecUsers/jmurovec/file'jmurovec'$USER$
+jmurovecjmurovecjmurovec$
+$USERjmurovec$USER$
+"$USER" $USERjmurovec$
+jmurovec=thallard$
 0$
-/home/jaka/Desktop/minishell/minishell_24jun00/tester/file$
-/home/jaka/Desktop/minishell/minishell_24jun00/tester/file$
-text textjaka ... jaka$
-/home/jaka/Desktop/minishell/minishell_24jun00/tester$
-jaka $PWD$
+/Users/jmurovec/Desktop/projects/minishell/tester/file$
+/Users/jmurovec/Desktop/projects/minishell/tester/file$
+text textjmurovec ... jmurovec$
+/Users/jmurovec/Desktop/projects/minishell/tester$
+jmurovec $PWD$
 aaa $ bbb$
 aaa $ $ bbb$
 aaa $ $ $ bbb$
-jaka $ $PWD$
-jaka$USERabcd$
-jaka$USERtext oui oui oui oui jaka oui jaka $
+jmurovec $ $PWD$
+jmurovec$USERabcd$
+jmurovec$USERtext oui oui oui oui jmurovec oui jmurovec $
 
 --- TEST ECHO - ESCAPE CHARACTER  -------------------------
 

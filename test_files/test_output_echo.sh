@@ -74,6 +74,11 @@ done < $FILE
 
 i=0
 nr_elements=${#ARRAY01[@]}
+# nr_elements=1 # JAKA , TEMPORRRILY TURNED OFF
+
+
+
+
 while (( $i < $nr_elements ))
 do
 	printf "  Test %3d:   [%-30s]   " $i "${ARRAY01[$i]}"
