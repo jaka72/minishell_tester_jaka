@@ -40,8 +40,8 @@ _=./minishell$
 Test 1
 my_command.c$$
 my_command$$
-readme$$
-test_cd.sh$$
+infile$$
+screenschot.png$$
 my_command_bash.sh$$
 run_tester.sh$$
 minishell$$
@@ -50,6 +50,7 @@ output_files$$
 
 
 Test 2
+README.md$$$$$$$$$$$$$$$$$
 infile$$$$$$$$$$$$$$$$$
 input_files_echo$$$$$$$$$$$$$$$$$
 minishell$$$$$$$$$$$$$$$$$
@@ -57,8 +58,8 @@ my_command$$$$$$$$$$$$$$$$$
 my_command.c$$$$$$$$$$$$$$$$$
 my_command_bash.sh$$$$$$$$$$$$$$$$$
 output_files$$$$$$$$$$$$$$$$$
-readme$$$$$$$$$$$$$$$$$
 run_tester.sh$$$$$$$$$$$$$$$$$
+screenschot.png$$$$$$$$$$$$$$$$$
 test_cd.sh$$$$$$$$$$$$$$$$$
 test_cd_withi_minish.sh$$$$$$$$$$$$$$$$$
 test_files$$$$$$$$$$$$$$$$$
