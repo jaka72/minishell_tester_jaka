@@ -1,7 +1,4 @@
 
-README
-
-![alt text](https://github.com/jaka72/minishell_tester_jaka/master/screenschot.png?raw=true)
 
 <img src="https://github.com/jaka72/minishell_tester_jaka/blob/master/screenschot.png" alt="Alt text" title="Optional title">
 
